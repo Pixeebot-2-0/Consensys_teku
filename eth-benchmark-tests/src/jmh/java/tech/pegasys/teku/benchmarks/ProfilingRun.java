@@ -13,6 +13,7 @@
 
 package tech.pegasys.teku.benchmarks;
 
+import io.github.pixee.security.BoundedLineReader;
 import static org.mockito.Mockito.mock;
 
 import java.io.BufferedReader;
@@ -233,8 +234,7 @@ public class ProfilingRun {
 
             System.out.println("Press enter: ");
             String line =
-                new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8))
-                    .readLine();
+                BoundedLineReader.readLine(new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8)), 5_000_000);
             try {
               counter = Integer.parseInt(line);
             } catch (NumberFormatException e) {
