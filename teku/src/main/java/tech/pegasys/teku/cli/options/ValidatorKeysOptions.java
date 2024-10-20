@@ -14,6 +14,8 @@
 package tech.pegasys.teku.cli.options;
 
 import com.google.common.base.Strings;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -131,7 +133,7 @@ public class ValidatorKeysOptions {
       return null;
     }
     try {
-      return new URL(validatorExternalSignerUrl);
+      return Urls.create(validatorExternalSignerUrl, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     } catch (MalformedURLException e) {
       throw new InvalidConfigurationException(
           "Invalid configuration. Signer URL has invalid syntax", e);

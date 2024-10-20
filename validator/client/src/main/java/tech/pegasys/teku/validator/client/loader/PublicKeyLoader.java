@@ -15,6 +15,8 @@ package tech.pegasys.teku.validator.client.loader;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.annotations.VisibleForTesting;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -97,7 +99,7 @@ public class PublicKeyLoader {
 
   private Stream<BLSPublicKey> readKeysFromUrl(final String url) {
     try {
-      final String[] keys = objectMapper.readValue(new URL(url), String[].class);
+      final String[] keys = objectMapper.readValue(Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS), String[].class);
       return Arrays.stream(keys).map(key -> BLSPublicKey.fromSSZBytes(Bytes.fromHexString(key)));
     } catch (IOException ex) {
       throw new InvalidConfigurationException("Failed to load public keys from URL " + url, ex);
