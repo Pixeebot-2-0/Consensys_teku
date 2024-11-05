@@ -172,7 +172,7 @@ public class UpnpClient {
   private void inspectDeviceRecursive(final RemoteDevice device) {
     for (RemoteService service : device.getServices()) {
       String serviceType = service.getServiceType().getType();
-      if (serviceType.equalsIgnoreCase(SERVICE_TYPE_WAN_IP_CONNECTION)) {
+      if (SERVICE_TYPE_WAN_IP_CONNECTION.equalsIgnoreCase(serviceType)) {
         wanIpFuture.complete(service);
       }
     }

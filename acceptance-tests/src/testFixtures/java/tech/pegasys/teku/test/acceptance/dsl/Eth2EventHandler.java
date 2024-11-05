@@ -47,7 +47,7 @@ public class Eth2EventHandler implements BackgroundEventHandler {
   @Override
   public synchronized void onComment(final String comment) {
     if (!hasReceivedReadyComment) {
-      hasReceivedReadyComment = comment.equals("ready");
+      hasReceivedReadyComment = "ready".equals(comment);
     }
   }
 

@@ -46,10 +46,10 @@ public class ReferenceTestFinder {
   @MustBeClosed
   private static Stream<TestDefinition> findTestTypes(final Path specDirectory) throws IOException {
     final String spec = specDirectory.getFileName().toString();
-    if (spec.equals("bls")) {
+    if ("bls".equals(spec)) {
       return new BlsRefTestFinder().findTests("", spec, specDirectory);
     }
-    if (spec.equals("slashing-protection-interchange")) {
+    if ("slashing-protection-interchange".equals(spec)) {
       return new SlashingProtectionInterchangeRefTestFinder().findTests("", spec, specDirectory);
     }
     return SUPPORTED_FORKS.stream()

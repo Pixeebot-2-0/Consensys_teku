@@ -45,7 +45,7 @@ public class SystemSignalListener {
               SystemSignalListener.class.getClassLoader(),
               new Class<?>[] {signalHandlerClass},
               (proxy, method, args) -> {
-                if (method.getName().equals("handle")) {
+                if ("handle".equals(method.getName())) {
                   action.run();
                   return null;
                 } else {

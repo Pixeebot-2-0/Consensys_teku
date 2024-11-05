@@ -115,7 +115,7 @@ public class ValidatorKeysApi {
     final JsonNode removeResult = objectMapper.readTree(removeLocalValidator(publicKey));
     assertThat(removeResult.get("data").size()).isEqualTo(1);
     checkStatus(removeResult.get("data"), expectedStatus);
-    if (expectedStatus.equals("deleted") || expectedStatus.equals("not_active")) {
+    if ("deleted".equals(expectedStatus) || "not_active".equals(expectedStatus)) {
       final JsonNode slashingProtection =
           objectMapper.readTree(removeResult.get("slashing_protection").asText());
       final JsonNode slashingData = slashingProtection.get("data");

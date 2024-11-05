@@ -25,7 +25,7 @@ public class SlashingProtectionInterchangeRefTestFinder implements TestFinder {
   @MustBeClosed
   public Stream<TestDefinition> findTests(
       final String fork, final String config, final Path testRoot) throws IOException {
-    if (!config.equals("slashing-protection-interchange")) {
+    if (!"slashing-protection-interchange".equals(config)) {
       return Stream.empty();
     }
     return Files.list(testRoot)

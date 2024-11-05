@@ -52,7 +52,7 @@ class MetricsDataFactoryTest {
     final List<BaseMetricData> data = factory.getMetricData(source);
     assertThat(data.size()).isEqualTo(isValidatorActive ? 2 : 1);
     data.stream()
-        .filter(el -> el.getProcess().equals("validator"))
+        .filter(el -> "validator".equals(el.getProcess()))
         .forEach(element -> assertThat(element).isInstanceOf(ValidatorMetricData.class));
   }
 
@@ -66,7 +66,7 @@ class MetricsDataFactoryTest {
     final List<BaseMetricData> data = factory.getMetricData(source);
     assertThat(data.size()).isEqualTo(2);
     data.stream()
-        .filter(el -> el.getProcess().equals("beaconnode"))
+        .filter(el -> "beaconnode".equals(el.getProcess()))
         .forEach(element -> assertThat(element).isInstanceOf(BeaconNodeMetricData.class));
   }
 

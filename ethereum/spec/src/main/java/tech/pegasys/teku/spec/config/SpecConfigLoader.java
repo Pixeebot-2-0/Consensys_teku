@@ -112,7 +112,7 @@ public class SpecConfigLoader {
       try (final InputStream inputStream = loadPreset(preset, resource).orElse(null)) {
         if (inputStream != null) {
           reader.readAndApply(inputStream, ignoreUnknownConfigItems);
-        } else if (resource.equals("phase0")) {
+        } else if ("phase0".equals(resource)) {
           throw new FileNotFoundException(
               String.format(
                   "Could not load spec config preset '%s' specified in config '%s'",

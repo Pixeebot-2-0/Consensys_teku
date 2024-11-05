@@ -162,7 +162,7 @@ public class RepairCommand implements Runnable {
     Scanner scanner = new Scanner(System.in, Charset.defaultCharset().name());
     final String confirmation = scanner.next();
 
-    if (!confirmation.equalsIgnoreCase("yes")) {
+    if (!"yes".equalsIgnoreCase(confirmation)) {
       SUB_COMMAND_LOG.display("Operation cancelled.");
       System.exit(1);
     }

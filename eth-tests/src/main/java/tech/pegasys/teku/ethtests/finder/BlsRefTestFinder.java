@@ -28,7 +28,7 @@ public class BlsRefTestFinder implements TestFinder {
   @MustBeClosed
   public Stream<TestDefinition> findTests(
       final String fork, final String config, final Path testRoot) throws IOException {
-    if (!config.equals("bls")) {
+    if (!"bls".equals(config)) {
       return Stream.empty();
     }
     return Files.list(testRoot)

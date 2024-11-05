@@ -193,7 +193,7 @@ public class MigrateDatabaseCommand implements Runnable {
     SUB_COMMAND_LOG.display(question);
     Scanner scanner = new Scanner(System.in, Charset.defaultCharset().name());
     final String confirmation = scanner.next();
-    return confirmation.equalsIgnoreCase("yes");
+    return "yes".equalsIgnoreCase(confirmation);
   }
 
   private void displaySourceDatabaseDetails(final DatabaseVersion sourceDatabaseVersion) {
