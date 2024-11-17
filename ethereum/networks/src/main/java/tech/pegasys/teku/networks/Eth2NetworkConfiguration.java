@@ -937,7 +937,7 @@ public class Eth2NetworkConfiguration {
       if (epochsStoreBlobs == null || epochsStoreBlobs.isBlank()) {
         return Optional.empty();
       }
-      if (epochsStoreBlobs.equalsIgnoreCase(EPOCHS_STORE_BLOBS_MAX_KEYWORD)) {
+      if (EPOCHS_STORE_BLOBS_MAX_KEYWORD.equalsIgnoreCase(epochsStoreBlobs)) {
         return Optional.of(MAX_EPOCHS_STORE_BLOBS);
       }
       final int epochsStoreBlobsInt;

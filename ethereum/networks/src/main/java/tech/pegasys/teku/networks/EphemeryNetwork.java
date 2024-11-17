@@ -44,7 +44,7 @@ public class EphemeryNetwork {
     final SpecConfig config = SpecConfigLoader.loadConfig("ephemery");
     final SpecConfigBuilder rawConfigBuilder = builder.rawConfig(config.getRawConfig());
 
-    if (Eth2Network.EPHEMERY.configName().equals("ephemery")) {
+    if ("ephemery".equals(Eth2Network.EPHEMERY.configName())) {
       final long currentTimestamp = timeProvider.getTimeInMillis().longValue() / 1000;
 
       final long updatedTimestamp =

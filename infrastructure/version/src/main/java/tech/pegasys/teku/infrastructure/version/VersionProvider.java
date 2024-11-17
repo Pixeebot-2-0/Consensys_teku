@@ -75,9 +75,9 @@ public class VersionProvider {
 
   static String defaultStoragePathForNormalizedOS(
       final String detectedOS, final Map<String, String> env) {
-    if (detectedOS.equals("windows")) {
+    if ("windows".equals(detectedOS)) {
       return env.get(ENV_LOCALAPPDATA) + "\\teku";
-    } else if (detectedOS.equals("osx")) {
+    } else if ("osx".equals(detectedOS)) {
       return env.get(ENV_HOME) + "/Library/teku";
     }
     String dataHome = env.get(ENV_XDG_DATA_HOME);

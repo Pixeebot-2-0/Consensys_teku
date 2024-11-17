@@ -246,7 +246,7 @@ public class VoluntaryExitCommand implements Callable<Integer> {
     Scanner scanner = new Scanner(System.in, Charset.defaultCharset());
     final String confirmation = scanner.next();
 
-    if (!confirmation.equalsIgnoreCase("yes")) {
+    if (!"yes".equalsIgnoreCase(confirmation)) {
       SUB_COMMAND_LOG.display("Cancelled sending voluntary exit.");
       return false;
     }

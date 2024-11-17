@@ -88,7 +88,7 @@ public class DatabaseNetwork {
                 "deposit contract", depositContractString, databaseNetwork.depositContract));
       }
       if (databaseNetwork.depositChainId != null
-          && !depositContractString.equals(EPHEMERY_DEPOSIT_CONTRACT_ADDRESS)
+          && !EPHEMERY_DEPOSIT_CONTRACT_ADDRESS.equals(depositContractString)
           && !databaseNetwork.depositChainId.equals(depositChainId)) {
         throw DatabaseStorageException.unrecoverable(
             formatMessage(
@@ -97,7 +97,7 @@ public class DatabaseNetwork {
                 String.valueOf(databaseNetwork.depositChainId)));
       }
       if (databaseNetwork.depositChainId != null
-          && depositContractString.equals(EPHEMERY_DEPOSIT_CONTRACT_ADDRESS)
+          && EPHEMERY_DEPOSIT_CONTRACT_ADDRESS.equals(depositContractString)
           && !databaseNetwork.depositChainId.equals(depositChainId)) {
         throw new EphemeryException();
       }

@@ -292,7 +292,7 @@ public class ExecutionLayerConfiguration {
     }
 
     private UInt64 validateAndParseBuilderBidCompareFactor() {
-      if (builderBidCompareFactor.equalsIgnoreCase(BUILDER_ALWAYS_KEYWORD)) {
+      if (BUILDER_ALWAYS_KEYWORD.equalsIgnoreCase(builderBidCompareFactor)) {
         return BUILDER_BOOST_FACTOR_PREFER_BUILDER;
       }
       if (builderBidCompareFactor.endsWith("%")) {

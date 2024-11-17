@@ -66,7 +66,7 @@ class SwaggerWebjarIntegrityTest {
   private static List<String> listClasspathDir(final String path, final Class<?> baseClass)
       throws IOException, URISyntaxException {
     final URI uri = baseClass.getResource(path).toURI();
-    if (uri.getScheme().equals("jar")) {
+    if ("jar".equals(uri.getScheme())) {
       try (FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.emptyMap())) {
         return listPath(fileSystem.getPath(path));
       }
