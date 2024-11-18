@@ -13,6 +13,7 @@
 
 package tech.pegasys.teku.infrastructure.collections.cache;
 
+import java.security.SecureRandom;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -32,7 +33,7 @@ public class LRUCacheTest {
 
   @Test
   void concurrencyTest() {
-    Random random = new Random();
+    Random random = new SecureRandom();
     int threadsCount = 16;
     int cacheMaxSize = 256;
     LRUCache<Integer, Integer> cache = LRUCache.create(cacheMaxSize);

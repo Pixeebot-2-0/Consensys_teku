@@ -15,6 +15,7 @@ package tech.pegasys.teku.spec.executionlayer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
+import java.security.SecureRandom;
 import static tech.pegasys.teku.infrastructure.time.SystemTimeProvider.SYSTEM_TIME_PROVIDER;
 
 import java.util.ArrayList;
@@ -91,7 +92,7 @@ public class ExecutionLayerChannelStub implements ExecutionLayerChannel {
   private final Set<Bytes32> requestedPowBlocks = new HashSet<>();
   private final Spec spec;
   private final BlobsUtil blobsUtil;
-  private final Random random = new Random();
+  private final Random random = new SecureRandom();
 
   private PayloadStatus payloadStatus = PayloadStatus.VALID;
   private Optional<Integer> blobsToGenerate = Optional.empty();

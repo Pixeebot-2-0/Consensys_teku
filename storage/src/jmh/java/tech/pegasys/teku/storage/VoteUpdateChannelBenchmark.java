@@ -15,6 +15,7 @@ package tech.pegasys.teku.storage;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +54,7 @@ public class VoteUpdateChannelBenchmark {
   private static final List<Map<UInt64, VoteTracker>> UPDATES = new ArrayList<>();
 
   static {
-    final Random random = new Random();
+    final Random random = new SecureRandom();
     for (int i = 0; i < UPDATE_COUNT; i++) {
       final int voteCount = random.nextInt(1000);
       final Map<UInt64, VoteTracker> votes = new HashMap<>();

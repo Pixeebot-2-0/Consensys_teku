@@ -14,6 +14,7 @@
 package tech.pegasys.teku.network.p2p;
 
 import java.net.BindException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -86,7 +87,7 @@ public class DiscoveryNetworkFactory {
       int attempt = 1;
       while (true) {
 
-        final Random random = new Random();
+        final Random random = new SecureRandom();
         final int port = MIN_PORT + random.nextInt(MAX_PORT - MIN_PORT);
         final DiscoveryConfig discoveryConfig =
             DiscoveryConfig.builder()

@@ -14,6 +14,7 @@
 package tech.pegasys.teku.bls;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import java.security.SecureRandom;
 
 import java.util.Random;
 import org.apache.tuweni.bytes.Bytes;
@@ -29,7 +30,7 @@ public class BLSTestUtil {
    * @return a random signature
    */
   public static BLSSignature randomSignature() {
-    return randomSignature(new Random().nextInt());
+    return randomSignature(new SecureRandom().nextInt());
   }
 
   /**
