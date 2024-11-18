@@ -13,6 +13,7 @@
 
 package tech.pegasys.teku.networking.p2p.libp2p;
 
+import java.security.SecureRandom;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
@@ -171,7 +172,7 @@ public class MuxFirewallTest {
       time.addAndGet(112); // ~9 per sec
     }
 
-    Random random = new Random();
+    Random random = new SecureRandom();
     for (int i = 18; i < 200; i++) {
       writeOneInbound(createNewStreamFrame(muxType, i));
       openedIds.add(i);

@@ -15,6 +15,7 @@ package tech.pegasys.teku.networking.eth2;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
+import java.security.SecureRandom;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -463,7 +464,7 @@ public class Eth2P2PNetworkFactory {
       final List<String> peerAddresses =
           peers.stream().flatMap(peer -> peer.getNodeAddresses().stream()).collect(toList());
 
-      final Random random = new Random();
+      final Random random = new SecureRandom();
       final int port = MIN_PORT + random.nextInt(MAX_PORT - MIN_PORT);
 
       return P2PConfig.builder()

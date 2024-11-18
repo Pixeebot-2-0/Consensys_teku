@@ -13,6 +13,7 @@
 
 package tech.pegasys.teku.infrastructure.metrics;
 
+import java.security.SecureRandom;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.OptionalDouble;
@@ -26,7 +27,7 @@ import org.hyperledger.besu.plugin.services.metrics.OperationTimer;
 
 public class StubOperationTimer extends StubMetric implements OperationTimer {
 
-  private final Random idGenerator = new Random();
+  private final Random idGenerator = new SecureRandom();
   private final Supplier<Long> timeProvider;
   private final Map<Long, Long> durations = new ConcurrentHashMap<>();
 
