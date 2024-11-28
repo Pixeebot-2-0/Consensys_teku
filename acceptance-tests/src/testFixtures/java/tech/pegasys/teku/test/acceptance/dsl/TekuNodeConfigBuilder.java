@@ -342,7 +342,7 @@ public class TekuNodeConfigBuilder {
     final String bearerPath = "/bearer.txt";
     LOG.debug("Setting bearer password, and mapping to file {}}", bearerPath);
     configMap.put("validator-api-bearer-file", bearerPath);
-    final File bearerFile = File.createTempFile("bearer", ".txt");
+    final File bearerFile = Files.createTempFile("bearer", ".txt").toFile();
     Files.writeString(bearerFile.toPath(), password, UTF_8);
     bearerFile.deleteOnExit();
     configFileMap.put(bearerFile, bearerPath);
@@ -468,7 +468,7 @@ public class TekuNodeConfigBuilder {
     mustBe(NodeType.VALIDATOR);
     final File sentryNodesConfigFile;
     try {
-      sentryNodesConfigFile = File.createTempFile("sentry-node-config", ".json");
+      sentryNodesConfigFile = Files.createTempFile("sentry-node-config", ".json").toFile();
       sentryNodesConfigFile.deleteOnExit();
 
       try (FileWriter fw = new FileWriter(sentryNodesConfigFile, StandardCharsets.UTF_8)) {
@@ -576,7 +576,7 @@ public class TekuNodeConfigBuilder {
     mustBe(NodeType.BEACON_NODE);
     this.maybePrivKey = Optional.ofNullable(privKey);
     this.maybePeerId = maybePrivKey.map(privateKey -> PeerId.fromPubKey(privateKey.publicKey()));
-    final File privateKeyFile = File.createTempFile("private-key", ".txt");
+    final File privateKeyFile = Files.createTempFile("private-key", ".txt").toFile();
     LOG.debug("with-private-key peerId={}", maybePeerId.get().toBase58());
     Files.writeString(privateKeyFile.toPath(), Bytes.wrap(privKey.bytes()).toHexString(), UTF_8);
     privateKeyFile.deleteOnExit();
@@ -597,7 +597,7 @@ public class TekuNodeConfigBuilder {
     if (!keyfilesGenerated) {
       keyfilesGenerated = true;
 
-      final File keystoreFile = File.createTempFile("keystore", ".pfx");
+      final File keystoreFile = Files.createTempFile("keystore", ".pfx").toFile();
       try (OutputStream out = new FileOutputStream(keystoreFile)) {
         // validatorApi.pfx has a long expiry, and no password
         Resources.copy(

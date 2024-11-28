@@ -22,6 +22,7 @@ import java.io.UncheckedIOException;
 import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -322,7 +323,7 @@ public class BesuNode extends Node {
     public Map<File, String> write() throws Exception {
       final Map<File, String> configFiles = new HashMap<>();
 
-      final File configFile = File.createTempFile("config", ".toml");
+      final File configFile = Files.createTempFile("config", ".toml").toFile();
       configFile.deleteOnExit();
       writeTo(configFile);
       configFiles.put(configFile, BESU_CONFIG_FILE_PATH);

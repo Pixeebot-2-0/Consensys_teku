@@ -13,6 +13,7 @@
 
 package tech.pegasys.teku.test.acceptance.dsl;
 
+import java.nio.file.Files;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
@@ -122,7 +123,7 @@ public abstract class TekuNode extends Node {
    * @return A file containing the data directory.
    */
   public File getDataDirectoryFromContainer() throws Exception {
-    File dbTar = File.createTempFile("database", ".tar");
+    File dbTar = Files.createTempFile("database", ".tar").toFile();
     dbTar.deleteOnExit();
     copyDirectoryToTar(DATA_PATH, dbTar);
     return dbTar;

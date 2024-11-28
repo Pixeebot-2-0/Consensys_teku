@@ -13,6 +13,7 @@
 
 package tech.pegasys.teku.test.acceptance.dsl;
 
+import java.nio.file.Files;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
@@ -153,7 +154,7 @@ public class Web3SignerNode extends Node {
     }
 
     public void writeConfigFile() throws Exception {
-      final File configFile = File.createTempFile("config", ".yaml");
+      final File configFile = Files.createTempFile("config", ".yaml").toFile();
       configFile.deleteOnExit();
       writeConfigFileTo(configFile);
       configFileMap.put(configFile, CONFIG_FILE_PATH);
