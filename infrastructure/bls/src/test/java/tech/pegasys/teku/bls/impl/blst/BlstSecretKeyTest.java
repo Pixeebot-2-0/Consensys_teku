@@ -13,6 +13,7 @@
 
 package tech.pegasys.teku.bls.impl.blst;
 
+import java.security.SecureRandom;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Random;
@@ -36,7 +37,7 @@ public class BlstSecretKeyTest extends BLSSecretKeyTest {
 
   @Test
   void shouldBeZeroKeyAfterDestroy() {
-    final BlstSecretKey secretKey = BlstSecretKey.generateNew(new Random());
+    final BlstSecretKey secretKey = BlstSecretKey.generateNew(new SecureRandom());
     assertThat(secretKey.isZero()).isFalse();
 
     secretKey.destroy();
