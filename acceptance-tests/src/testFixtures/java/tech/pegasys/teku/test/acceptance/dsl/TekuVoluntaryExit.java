@@ -13,6 +13,7 @@
 
 package tech.pegasys.teku.test.acceptance.dsl;
 
+import java.nio.file.Files;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
@@ -114,7 +115,7 @@ public class TekuVoluntaryExit extends Node {
 
     public Map<File, String> write() throws Exception {
       final Map<File, String> configFiles = new HashMap<>();
-      final File configFile = File.createTempFile("config", ".yaml");
+      final File configFile = Files.createTempFile("config", ".yaml").toFile();
       configFile.deleteOnExit();
       writeTo(configFile);
       configFiles.put(configFile, CONFIG_FILE_PATH);

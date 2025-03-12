@@ -131,7 +131,7 @@ public class ValidatorKeystores {
     writeToTempDir(validatorInfoDirectoryPath);
 
     // create temporary tar file that can be copied into any docker container
-    File validatorInfoTar = File.createTempFile("validatorInfo", ".tar");
+    File validatorInfoTar = Files.createTempFile("validatorInfo", ".tar").toFile();
     validatorInfoTar.deleteOnExit();
 
     // copy keystores directory to tar file and delete the now redundant directory
