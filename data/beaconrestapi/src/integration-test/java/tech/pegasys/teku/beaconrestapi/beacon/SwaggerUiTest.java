@@ -13,6 +13,8 @@
 
 package tech.pegasys.teku.beaconrestapi.beacon;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static tech.pegasys.teku.infrastructure.restapi.SwaggerUIBuilder.SWAGGER_INITIALIZER_JS;
@@ -79,18 +81,18 @@ public class SwaggerUiTest extends AbstractDataBackedRestAPIIntegrationTest {
     Document doc =
         Jsoup.connect(url).data("query", "Java").userAgent("Mozilla").timeout(3000).get();
 
-    final URL baseUrl = new URL(url);
+    final URL baseUrl = Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 
     // Resources
     Elements resources = doc.select("link[href]");
     for (Element element : resources) {
-      links.add(new URL(baseUrl, element.attr("href")).getPath());
+      links.add(Urls.create(baseUrl, element.attr("href"), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).getPath());
     }
 
     // Scripts
     Elements scripts = doc.select("script");
     for (Element element : scripts) {
-      links.add(new URL(baseUrl, element.attr("src")).getPath());
+      links.add(Urls.create(baseUrl, element.attr("src"), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).getPath());
     }
 
     return links;

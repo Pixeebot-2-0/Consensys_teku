@@ -13,6 +13,8 @@
 
 package tech.pegasys.teku.validator.client.signer;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockserver.model.HttpRequest.request;
 import static org.mockserver.model.HttpResponse.response;
@@ -37,8 +39,7 @@ public class ExternalSignerBasicAuthIntegrationTest
 
   @Override
   protected URL getUrl() throws MalformedURLException {
-    return new URL(
-        String.format("https://%s:%s@127.0.0.1:%s", username, password, client.getLocalPort()));
+    return Urls.create(String.format("https://%s:%s@127.0.0.1:%s", username, password, client.getLocalPort()), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
   }
 
   @Test
