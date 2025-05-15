@@ -13,6 +13,7 @@
 
 package tech.pegasys.teku.benchmarks.gen;
 
+import io.github.pixee.security.BoundedLineReader;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.BufferedReader;
@@ -92,7 +93,7 @@ public class BlsKeyPairIO {
         return null;
       }
       try {
-        String parts = reader.readLine();
+        String parts = BoundedLineReader.readLine(reader, 5_000_000);
         if (parts == null) {
           return null;
         }

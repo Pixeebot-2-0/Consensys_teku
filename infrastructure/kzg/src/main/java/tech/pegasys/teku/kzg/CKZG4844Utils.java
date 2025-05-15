@@ -13,6 +13,7 @@
 
 package tech.pegasys.teku.kzg;
 
+import io.github.pixee.security.BoundedLineReader;
 import static tech.pegasys.teku.kzg.KZG.BYTES_PER_G1;
 import static tech.pegasys.teku.kzg.KZG.BYTES_PER_G2;
 
@@ -70,25 +71,25 @@ class CKZG4844Utils {
         new BufferedReader(new InputStreamReader(resource, StandardCharsets.UTF_8))) {
       // txt format :
       // Number of G1 points
-      final int g1Size = Integer.parseInt(reader.readLine());
+      final int g1Size = Integer.parseInt(BoundedLineReader.readLine(reader, 5_000_000));
       // Number of G2 points
-      final int g2Size = Integer.parseInt(reader.readLine());
+      final int g2Size = Integer.parseInt(BoundedLineReader.readLine(reader, 5_000_000));
       // List of G1 Lagrange points, one on each new line
       final List<Bytes> g1PointsLagrange = new ArrayList<>();
       for (int i = 0; i < g1Size; i++) {
-        final Bytes g1Point = Bytes.fromHexString(reader.readLine(), BYTES_PER_G1);
+        final Bytes g1Point = Bytes.fromHexString(BoundedLineReader.readLine(reader, 5_000_000), BYTES_PER_G1);
         g1PointsLagrange.add(g1Point);
       }
       // List of G2 Monomial points, one on each new line
       final List<Bytes> g2PointsMonomial = new ArrayList<>();
       for (int i = 0; i < g2Size; i++) {
-        final Bytes g2Point = Bytes.fromHexString(reader.readLine(), BYTES_PER_G2);
+        final Bytes g2Point = Bytes.fromHexString(BoundedLineReader.readLine(reader, 5_000_000), BYTES_PER_G2);
         g2PointsMonomial.add(g2Point);
       }
       // List of G1 Monomial points, one on each new line
       final List<Bytes> g1PointsMonomial = new ArrayList<>();
       for (int i = 0; i < g1Size; i++) {
-        final Bytes g1Point = Bytes.fromHexString(reader.readLine(), BYTES_PER_G1);
+        final Bytes g1Point = Bytes.fromHexString(BoundedLineReader.readLine(reader, 5_000_000), BYTES_PER_G1);
         g1PointsMonomial.add(g1Point);
       }
 
