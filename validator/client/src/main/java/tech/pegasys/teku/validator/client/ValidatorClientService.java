@@ -13,6 +13,7 @@
 
 package tech.pegasys.teku.validator.client;
 
+import java.security.SecureRandom;
 import static tech.pegasys.teku.infrastructure.exceptions.ExitConstants.FATAL_EXIT_CODE;
 import static tech.pegasys.teku.infrastructure.logging.StatusLogger.STATUS_LOG;
 
@@ -514,7 +515,7 @@ public class ValidatorClientService extends Service {
                   dvtSelectionsEndpointEnabled));
       validatorTimingChannels.add(
           new SyncCommitteeScheduler(
-              metricsSystem, spec, syncCommitteeDutyLoader, new Random()::nextInt));
+              metricsSystem, spec, syncCommitteeDutyLoader, new SecureRandom()::nextInt));
     }
 
     if (spec.isMilestoneSupported(SpecMilestone.BELLATRIX)) {
