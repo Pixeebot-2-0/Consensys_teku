@@ -13,6 +13,7 @@
 
 package tech.pegasys.teku.test.acceptance.dsl;
 
+import java.nio.file.Files;
 import static tech.pegasys.teku.test.acceptance.dsl.Node.CONFIG_FILE_PATH;
 import static tech.pegasys.teku.test.acceptance.dsl.Node.YAML_MAPPER;
 
@@ -111,7 +112,7 @@ public class TekuNodeConfig {
   }
 
   private void writeConfigMapToFile() throws Exception {
-    final File configFile = File.createTempFile("config", ".yaml");
+    final File configFile = Files.createTempFile("config", ".yaml").toFile();
     configFile.deleteOnExit();
     writeConfigFileTo(configFile);
     configFileMap.put(configFile, CONFIG_FILE_PATH);
