@@ -13,6 +13,8 @@
 
 package tech.pegasys.teku.validator.client.signer;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.http.HttpClient;
@@ -60,7 +62,7 @@ public abstract class AbstractExternalSignerIntegrationTest {
     final ValidatorConfig config =
         ValidatorConfig.builder()
             .validatorExternalSignerPublicKeySources(List.of(KEYPAIR.getPublicKey().toString()))
-            .validatorExternalSignerUrl(new URL("http://127.0.0.1:" + client.getLocalPort()))
+            .validatorExternalSignerUrl(Urls.create("http://127.0.0.1:" + client.getLocalPort(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS))
             .validatorExternalSignerTimeout(TIMEOUT)
             .build();
     final Supplier<HttpClient> externalSignerHttpClientFactory =

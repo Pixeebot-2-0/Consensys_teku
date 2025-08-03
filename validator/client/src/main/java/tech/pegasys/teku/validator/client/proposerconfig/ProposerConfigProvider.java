@@ -13,6 +13,8 @@
 
 package tech.pegasys.teku.validator.client.proposerconfig;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,7 +38,7 @@ public interface ProposerConfigProvider {
     if (source.isPresent()) {
       URL sourceUrl;
       try {
-        sourceUrl = new URL(source.get());
+        sourceUrl = Urls.create(source.get(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         return new UrlProposerConfigProvider(
             asyncRunner, refresh, proposerConfigLoader, timeProvider, sourceUrl);
       } catch (MalformedURLException e1) {

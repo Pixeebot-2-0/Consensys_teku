@@ -13,6 +13,8 @@
 
 package tech.pegasys.teku.validator.client.restapi;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import static tech.pegasys.teku.ethereum.json.types.SharedApiTypes.PUBKEY_API_TYPE;
 import static tech.pegasys.teku.infrastructure.http.RestApiConstants.EPOCH;
 import static tech.pegasys.teku.infrastructure.http.RestApiConstants.EPOCH_QUERY_DESCRIPTION;
@@ -111,7 +113,7 @@ public class ValidatorTypes {
           .parser(
               url -> {
                 try {
-                  return new URL(url);
+                  return Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                 } catch (MalformedURLException e) {
                   throw new IllegalArgumentException(e);
                 }
