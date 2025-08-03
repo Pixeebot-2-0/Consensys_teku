@@ -14,6 +14,8 @@
 package tech.pegasys.teku.cli.options;
 
 import com.google.common.base.Strings;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -214,7 +216,7 @@ public class MetricsOptions {
       return null;
     }
     try {
-      return new URL(metricsEndpoint);
+      return Urls.create(metricsEndpoint, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
     } catch (MalformedURLException e) {
       throw new InvalidConfigurationException(
           "Invalid configuration. Metrics Endpoint has invalid syntax", e);
